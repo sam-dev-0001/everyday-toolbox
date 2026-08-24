@@ -1,7 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { DownloadButton } from '../../components/DownloadButton';
 import { AdPlaceholder } from '../../components/AdPlaceholder';
-import { QrCode, Wifi, Globe, User, Mail, Phone, Sliders, Sparkles, Download } from 'lucide-react';
+import { QrCode, Wifi, Globe, User, Mail, Sparkles, Download, AlertTriangle } from 'lucide-react';
 import QRCode from 'qrcode';
 
 export const QrGenerator: React.FC = () => {
@@ -31,12 +31,39 @@ export const QrGenerator: React.FC = () => {
 
   // Customization
   const [fgColor, setFgColor] = useState<string>('#000000');
-  const [bgColor, setBgColor] = useState<string>('#FFFFFF');
+  const [bgMode, setBgMode] = useState<'white' | 'transparent' | 'custom'>('white');
+  const [customBgColor, setCustomBgColor] = useState<string>('#FFFFFF');
   const [ecLevel, setEcLevel] = useState<'L' | 'M' | 'Q' | 'H'>('M');
-  const [size, setSize] = useState<number>(300);
+  const [size, setSize] = useState<number>(512);
 
   const [qrDataUrl, setQrDataUrl] = useState<string>('');
   const [qrSvgString, setQrSvgString] = useState<string>('');
+
+  const effectiveBgColor = bgMode === 'transparent' ? '#00000000' : bgMode === 'white' ? '#FFFFFF' : customBgColor;
+
+  // Contrast calculation helper
+  const getLuminance = (hex: string) => {
+    const cleanHex = hex.replace('#', '');
+    if (cleanHex.length < 6) return 0.5;
+    const r = parseInt(cleanHex.substring(0, 2), 16) / 255;
+    const g = parseInt(cleanHex.substring(2, 4), 16) / 255;
+    const b = parseInt(cleanHex.substring(4, 6), 16) / 255;
+    const a = [r, g, b].map(v => (v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4)));
+    return a[0] * 0.2126 + a[1] * 0.7152 + a[2] * 0.0722;
+  };
+
+  const isLowContrast = React.useMemo(() => {
+    if (bgMode === 'transparent') {
+      const lum = getLuminance(fgColor);
+      return lum > 0.65; // Very bright FG might not be scannable on white/light paper
+    }
+    const lum1 = getLuminance(fgColor);
+    const lum2 = getLuminance(effectiveBgColor);
+    const bright = Math.max(lum1, lum2);
+    const dark = Math.min(lum1, lum2);
+    const ratio = (bright + 0.05) / (dark + 0.05);
+    return ratio < 3.0;
+  }, [fgColor, effectiveBgColor, bgMode]);
 
   const getPayload = (): string => {
     if (type === 'url') return url;
@@ -64,7 +91,7 @@ export const QrGenerator: React.FC = () => {
           margin: 2,
           color: {
             dark: fgColor,
-            light: bgColor,
+            light: effectiveBgColor,
           },
           errorCorrectionLevel: ecLevel,
         });
@@ -76,7 +103,7 @@ export const QrGenerator: React.FC = () => {
           margin: 2,
           color: {
             dark: fgColor,
-            light: bgColor,
+            light: effectiveBgColor,
           },
           errorCorrectionLevel: ecLevel,
         });
@@ -87,13 +114,33 @@ export const QrGenerator: React.FC = () => {
     };
 
     generate();
-  }, [type, url, text, ssid, wifiPassword, encryption, hidden, firstName, lastName, phoneNum, vcardEmail, org, emailTo, emailSubj, emailBody, fgColor, bgColor, ecLevel, size]);
+  }, [
+    type,
+    url,
+    text,
+    ssid,
+    wifiPassword,
+    encryption,
+    hidden,
+    firstName,
+    lastName,
+    phoneNum,
+    vcardEmail,
+    org,
+    emailTo,
+    emailSubj,
+    emailBody,
+    fgColor,
+    effectiveBgColor,
+    ecLevel,
+    size,
+  ]);
 
   const handleDownloadPng = () => {
     if (!qrDataUrl) return;
     const a = document.createElement('a');
     a.href = qrDataUrl;
-    a.download = `qrcode-${type}-${size}px.png`;
+    a.download = `qrcode-${type}-${size}x${size}${bgMode === 'transparent' ? '-transparent' : ''}.png`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -105,7 +152,7 @@ export const QrGenerator: React.FC = () => {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `qrcode-${type}.svg`;
+    a.download = `qrcode-${type}${bgMode === 'transparent' ? '-transparent' : ''}.svg`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -332,48 +379,128 @@ export const QrGenerator: React.FC = () => {
           )}
 
           {/* Styling Controls */}
-          <div className="border-t border-white/[0.06] pt-4 grid grid-cols-2 sm:grid-cols-3 gap-3">
-            <div className="space-y-1">
-              <label htmlFor="qr-fg-color" className="text-[11px] text-slate-400 block">QR Color</label>
-              <div className="flex items-center gap-2">
-                <input
-                  id="qr-fg-color"
-                  type="color"
-                  value={fgColor}
-                  onChange={(e) => setFgColor(e.target.value)}
-                  className="w-8 h-8 rounded-lg bg-transparent border-0 cursor-pointer"
-                />
-                <span className="text-[11px] font-mono text-slate-300 uppercase">{fgColor}</span>
+          <div className="border-t border-white/[0.06] pt-5 space-y-4">
+            <h3 className="text-xs font-bold text-slate-300 uppercase tracking-wider">
+              Design & Color Options
+            </h3>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* QR Foreground Color */}
+              <div className="space-y-1.5">
+                <label htmlFor="qr-fg-color" className="text-xs font-semibold text-slate-300 block">
+                  QR / Foreground Color
+                </label>
+                <div className="flex items-center gap-2 p-2 rounded-xl bg-[#11182C] border border-white/[0.08]">
+                  <input
+                    id="qr-fg-color"
+                    type="color"
+                    value={fgColor}
+                    onChange={(e) => setFgColor(e.target.value)}
+                    className="w-8 h-8 rounded-lg bg-transparent border-0 cursor-pointer shrink-0"
+                  />
+                  <input
+                    type="text"
+                    value={fgColor}
+                    onChange={(e) => setFgColor(e.target.value)}
+                    className="w-full bg-transparent text-xs font-mono text-white focus:outline-none uppercase"
+                  />
+                </div>
+              </div>
+
+              {/* Background Mode Options */}
+              <div className="space-y-1.5">
+                <span className="text-xs font-semibold text-slate-300 block">Background Style</span>
+                <div className="grid grid-cols-3 gap-1.5">
+                  {(['white', 'transparent', 'custom'] as const).map((mode) => (
+                    <button
+                      key={mode}
+                      type="button"
+                      onClick={() => setBgMode(mode)}
+                      className={`py-2 px-2 rounded-xl text-xs font-semibold capitalize transition-all cursor-pointer text-center ${
+                        bgMode === mode
+                          ? 'bg-purple-600 text-white shadow-md shadow-purple-600/30 font-bold'
+                          : 'bg-[#11182C] text-slate-300 border border-white/[0.06] hover:text-white'
+                      }`}
+                    >
+                      {mode}
+                    </button>
+                  ))}
+                </div>
               </div>
             </div>
 
-            <div className="space-y-1">
-              <label htmlFor="qr-bg-color" className="text-[11px] text-slate-400 block">Background</label>
-              <div className="flex items-center gap-2">
-                <input
-                  id="qr-bg-color"
-                  type="color"
-                  value={bgColor}
-                  onChange={(e) => setBgColor(e.target.value)}
-                  className="w-8 h-8 rounded-lg bg-transparent border-0 cursor-pointer"
-                />
-                <span className="text-[11px] font-mono text-slate-300 uppercase">{bgColor}</span>
+            {/* Custom Background Color Picker when Custom is chosen */}
+            {bgMode === 'custom' && (
+              <div className="space-y-1.5 pt-1 animate-in fade-in duration-150">
+                <label htmlFor="qr-bg-color" className="text-xs font-semibold text-slate-300 block">
+                  Custom Background Color
+                </label>
+                <div className="flex items-center gap-2 p-2 rounded-xl bg-[#11182C] border border-white/[0.08]">
+                  <input
+                    id="qr-bg-color"
+                    type="color"
+                    value={customBgColor}
+                    onChange={(e) => setCustomBgColor(e.target.value)}
+                    className="w-8 h-8 rounded-lg bg-transparent border-0 cursor-pointer shrink-0"
+                  />
+                  <input
+                    type="text"
+                    value={customBgColor}
+                    onChange={(e) => setCustomBgColor(e.target.value)}
+                    className="w-full bg-transparent text-xs font-mono text-white focus:outline-none uppercase"
+                  />
+                </div>
               </div>
-            </div>
+            )}
 
-            <div className="space-y-1">
-              <label htmlFor="qr-ec-select" className="text-[11px] text-slate-400 block">Error Correction</label>
-              <select
-                id="qr-ec-select"
-                value={ecLevel}
-                onChange={(e) => setEcLevel(e.target.value as any)}
-                className="w-full px-2 py-1.5 rounded-lg bg-[#11182C] border border-white/[0.08] text-xs text-white"
-              >
-                <option value="L">L (7% Recovery)</option>
-                <option value="M">M (15% Recovery)</option>
-                <option value="Q">Q (25% Recovery)</option>
-                <option value="H">H (30% Recovery)</option>
-              </select>
+            {/* Contrast Warning if contrast is suboptimal */}
+            {isLowContrast && (
+              <div className="flex items-center gap-2 p-3 rounded-2xl bg-amber-500/10 border border-amber-500/25 text-amber-300 text-xs">
+                <AlertTriangle className="w-4 h-4 shrink-0 text-amber-400" />
+                <span>Use strong contrast for reliable scanning.</span>
+              </div>
+            )}
+
+            {/* Size & Error Correction Controls */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+              <div className="space-y-1.5">
+                <label htmlFor="qr-size-select" className="text-xs font-semibold text-slate-300 block">
+                  Output Resolution
+                </label>
+                <div className="grid grid-cols-4 gap-1.5">
+                  {[256, 512, 1024, 2048].map((s) => (
+                    <button
+                      key={s}
+                      type="button"
+                      onClick={() => setSize(s)}
+                      className={`py-1.5 px-1 rounded-xl text-[11px] font-semibold transition-all cursor-pointer text-center ${
+                        size === s
+                          ? 'bg-purple-600 text-white font-bold'
+                          : 'bg-[#11182C] text-slate-300 border border-white/[0.06] hover:text-white'
+                      }`}
+                    >
+                      {s}px
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-1.5">
+                <label htmlFor="qr-ec-select" className="text-xs font-semibold text-slate-300 block">
+                  Error Correction Level
+                </label>
+                <select
+                  id="qr-ec-select"
+                  value={ecLevel}
+                  onChange={(e) => setEcLevel(e.target.value as any)}
+                  className="w-full px-3 py-2 rounded-xl bg-[#11182C] border border-white/[0.08] text-xs text-white focus:outline-none"
+                >
+                  <option value="L">L (7% Error Recovery)</option>
+                  <option value="M">M (15% Error Recovery - Recommended)</option>
+                  <option value="Q">Q (25% High Recovery)</option>
+                  <option value="H">H (30% Maximum Recovery)</option>
+                </select>
+              </div>
             </div>
           </div>
         </div>
@@ -381,25 +508,35 @@ export const QrGenerator: React.FC = () => {
         {/* Live Preview & Download */}
         <div className="md:col-span-5 rounded-3xl bg-[#0D1224] border border-white/[0.08] p-5 sm:p-7 flex flex-col items-center justify-between space-y-6 shadow-xl text-center">
           <div className="space-y-1">
-            <h3 className="text-base font-bold text-white">Live QR Code</h3>
-            <p className="text-xs text-slate-400">Scan with any smartphone camera</p>
+            <h3 className="text-base font-bold text-white">Live QR Code Preview</h3>
+            <p className="text-xs text-slate-400">
+              {bgMode === 'transparent' ? 'Alpha transparent background' : 'High quality square output'}
+            </p>
           </div>
 
           <div
-            className="p-4 rounded-3xl border border-white/10 shadow-2xl flex items-center justify-center transition-all"
-            style={{ backgroundColor: bgColor }}
+            className={`p-4 rounded-3xl border border-white/10 shadow-2xl flex items-center justify-center transition-all ${
+              bgMode === 'transparent' ? 'bg-transparency-grid' : ''
+            }`}
+            style={{
+              backgroundColor: bgMode === 'transparent' ? undefined : effectiveBgColor,
+            }}
           >
             {qrDataUrl && (
               <img
                 src={qrDataUrl}
                 alt="Generated QR Code"
-                className="w-48 h-48 sm:w-56 sm:h-56 object-contain rounded-xl"
+                className="w-48 h-48 sm:w-56 sm:h-56 object-contain rounded-xl select-none"
               />
             )}
           </div>
 
           <div className="w-full space-y-2.5">
-            <DownloadButton onClick={handleDownloadPng} label="Download High-Res PNG" />
+            <DownloadButton
+              onClick={handleDownloadPng}
+              label="Download Square PNG"
+              sublabel={`${size} × ${size}px${bgMode === 'transparent' ? ' • Alpha Transparent' : ''}`}
+            />
             <button
               type="button"
               onClick={handleDownloadSvg}
@@ -414,3 +551,4 @@ export const QrGenerator: React.FC = () => {
     </div>
   );
 };
+

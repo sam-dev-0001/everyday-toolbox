@@ -37,12 +37,13 @@ export const ToolItem: React.FC<ToolItemProps> = ({ tool }) => {
     >
       {/* Subtle Favorite toggle button */}
       <button
+        type="button"
         onClick={handleToggleFavorite}
         aria-label={favorite ? `Remove ${tool.name} from favorites` : `Add ${tool.name} to favorites`}
-        className={`absolute top-2 right-2 p-1.5 rounded-lg transition-all ${
+        className={`absolute top-2 right-2 p-1.5 rounded-lg transition-all cursor-pointer z-10 ${
           favorite
-            ? 'opacity-100 text-pink-500'
-            : 'opacity-0 group-hover:opacity-100 text-slate-400 hover:text-pink-400 hover:bg-white/[0.08]'
+            ? 'opacity-100 text-pink-500 scale-110'
+            : 'opacity-40 sm:opacity-0 group-hover:opacity-100 text-slate-400 hover:text-pink-400 hover:bg-white/[0.08]'
         }`}
       >
         <Heart className={`w-3.5 h-3.5 ${favorite ? 'fill-pink-500 text-pink-500' : ''}`} />

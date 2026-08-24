@@ -25,8 +25,9 @@ export const Footer: React.FC = () => {
               <div className="w-7 h-7 rounded-lg bg-gradient-to-tr from-[#7C3AED] to-[#3B82F6] flex items-center justify-center shadow-md">
                 <Sparkles className="w-4 h-4 text-white" />
               </div>
-              <span className="font-extrabold text-base tracking-tight text-white">
-                Everyday<span className="text-purple-400">Toolbox</span>
+              <span className="font-extrabold text-base tracking-tight flex items-center gap-0.5">
+                <span className="text-white">Everyday</span>
+                <span className="text-purple-400">Toolbox</span>
               </span>
             </div>
             <p className="text-xs text-slate-400 max-w-sm">
@@ -56,25 +57,31 @@ export const Footer: React.FC = () => {
         {/* Bottom footer row */}
         <div className="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
           <div className="text-slate-400">
-            © 2026 Everyday Toolbox. All rights reserved.
+            © 2026 Everyday Toolbox. All rights reserved. 100% Private Client-Side Utilities.
           </div>
 
           <div className="flex items-center gap-4 text-slate-400">
             <button
-              onClick={() => setModalType('privacy')}
-              className="hover:text-white transition-colors"
+              onClick={() => { navigate('/about'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              className="hover:text-white transition-colors cursor-pointer"
+            >
+              About
+            </button>
+            <button
+              onClick={() => { navigate('/privacy'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Privacy Policy
             </button>
             <button
-              onClick={() => setModalType('terms')}
-              className="hover:text-white transition-colors"
+              onClick={() => { navigate('/terms'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Terms
             </button>
             <button
-              onClick={() => setModalType('contact')}
-              className="hover:text-white transition-colors"
+              onClick={() => { navigate('/contact'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
+              className="hover:text-white transition-colors cursor-pointer"
             >
               Contact
             </button>

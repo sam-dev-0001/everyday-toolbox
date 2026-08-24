@@ -1,0 +1,6 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Sitemap index
+Sitemap: https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/sitemap.xml

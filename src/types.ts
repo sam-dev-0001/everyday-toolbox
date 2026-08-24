@@ -9,6 +9,17 @@ export type ToolCategory =
   | 'utilities'
   | 'more';
 
+export interface HowToStep {
+  step: number;
+  title: string;
+  desc: string;
+}
+
+export interface FaqItem {
+  question: string;
+  answer: string;
+}
+
 export interface Tool {
   id: string;
   name: string;
@@ -21,6 +32,19 @@ export interface Tool {
   keywords: string[];
   colorAccent?: string;
   isLocalOnly?: boolean;
+
+  // SEO & GEO metadata
+  seoTitle?: string;
+  seoDescription?: string;
+  h1?: string;
+  supportedFormats?: string[];
+  outputFormats?: string[];
+  howToUse?: HowToStep[];
+  faq?: FaqItem[];
+  privacyInfo?: string;
+  relatedToolIds?: string[];
+  applicationCategory?: string;
+  operatingSystem?: string;
 }
 
 export interface CategoryInfo {
@@ -28,4 +52,7 @@ export interface CategoryInfo {
   name: string;
   icon: string;
   color: string;
+  slug?: string;
+  seoTitle?: string;
+  seoDescription?: string;
 }

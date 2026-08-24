@@ -30,13 +30,13 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     return 'dark';
   });
 
-  // Favorites state
+  // Favorites state - strictly empty by default for new users
   const [favorites, setFavorites] = useState<string[]>(() => {
     try {
       const saved = localStorage.getItem('et_favorites');
-      return saved ? JSON.parse(saved) : ['image-compressor', 'merge-pdf', 'word-counter', 'qr-code-generator'];
+      return saved ? JSON.parse(saved) : [];
     } catch {
-      return ['image-compressor', 'merge-pdf', 'word-counter', 'qr-code-generator'];
+      return [];
     }
   });
 
@@ -98,11 +98,21 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
-  // Find active tool if on /tools/:toolId
+  // Find active tool if on /tools/:toolId or clean /:toolId or t.route
   const activeTool = React.useMemo(() => {
-    if (!currentRoute.startsWith('/tools/')) return null;
-    const toolId = currentRoute.replace('/tools/', '');
-    return TOOLS.find(t => t.id === toolId || t.route === currentRoute) || null;
+    if (currentRoute === '/' || currentRoute === '') return null;
+    
+    // Check if route matches static pages or categories
+    if (['/about', '/privacy', '/terms', '/contact'].includes(currentRoute)) return null;
+    if (currentRoute.startsWith('/category/')) return null;
+
+    // Check direct route match
+    const directMatch = TOOLS.find(t => t.route === currentRoute);
+    if (directMatch) return directMatch;
+
+    // Check with /tools/ prefix stripped or added
+    const cleanSlug = currentRoute.replace(/^\/tools\//, '').replace(/^\//, '');
+    return TOOLS.find(t => t.id === cleanSlug || t.route === `/${cleanSlug}` || t.route === `/tools/${cleanSlug}`) || null;
   }, [currentRoute]);
 
   // Filter tools based on search, category, and favorites

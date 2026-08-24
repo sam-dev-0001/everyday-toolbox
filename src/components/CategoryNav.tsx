@@ -1,11 +1,11 @@
 import React, { useRef } from 'react';
 import { useApp } from '../context/AppContext';
 import { CATEGORIES } from '../data/tools';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronLeft, ChevronRight, Heart } from 'lucide-react';
 import { ToolCategory } from '../types';
 
 export const CategoryNav: React.FC = () => {
-  const { activeCategory, setActiveCategory, showFavoritesOnly, setShowFavoritesOnly, navigate, currentRoute } = useApp();
+  const { activeCategory, setActiveCategory, showFavoritesOnly, setShowFavoritesOnly, navigate, currentRoute, favorites } = useApp();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const isHome = currentRoute === '/';
@@ -31,8 +31,9 @@ export const CategoryNav: React.FC = () => {
         
         {/* Left Scroll arrow for desktop */}
         <button
+          type="button"
           onClick={() => scroll('left')}
-          className="hidden md:flex p-1.5 rounded-full bg-[#11182C] border border-white/[0.08] text-slate-400 hover:text-white shadow-sm mr-2 shrink-0"
+          className="hidden md:flex p-1.5 rounded-full bg-[#11182C] border border-white/[0.08] text-slate-400 hover:text-white shadow-sm mr-2 shrink-0 cursor-pointer"
           aria-label="Scroll Categories Left"
         >
           <ChevronLeft className="w-3.5 h-3.5" />
@@ -43,12 +44,24 @@ export const CategoryNav: React.FC = () => {
           ref={scrollRef}
           className="flex items-center gap-2 py-3 overflow-x-auto no-scrollbar scroll-smooth w-full"
         >
+          {showFavoritesOnly && (
+            <button
+              type="button"
+              onClick={() => setShowFavoritesOnly(false)}
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all shrink-0 cursor-pointer bg-pink-600 text-white shadow-md shadow-pink-500/25 border border-pink-400/40"
+            >
+              <Heart className="w-3.5 h-3.5 fill-white" />
+              <span>Favorites ({favorites.length})</span>
+            </button>
+          )}
+
           {CATEGORIES.map((cat) => {
             const isActive = !showFavoritesOnly && activeCategory === cat.id;
 
             return (
               <button
                 key={cat.id}
+                type="button"
                 onClick={() => handleSelect(cat.id)}
                 className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold whitespace-nowrap transition-all shrink-0 cursor-pointer ${
                   isActive
@@ -71,8 +84,9 @@ export const CategoryNav: React.FC = () => {
 
         {/* Right Scroll arrow for desktop */}
         <button
+          type="button"
           onClick={() => scroll('right')}
-          className="hidden md:flex p-1.5 rounded-full bg-[#11182C] border border-white/[0.08] text-slate-400 hover:text-white shadow-sm ml-2 shrink-0"
+          className="hidden md:flex p-1.5 rounded-full bg-[#11182C] border border-white/[0.08] text-slate-400 hover:text-white shadow-sm ml-2 shrink-0 cursor-pointer"
           aria-label="Scroll Categories Right"
         >
           <ChevronRight className="w-3.5 h-3.5" />
@@ -81,3 +95,4 @@ export const CategoryNav: React.FC = () => {
     </div>
   );
 };
+

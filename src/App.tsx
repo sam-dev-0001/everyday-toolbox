@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Suspense, lazy } from 'react';
 import { AppProvider, useApp } from './context/AppContext';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
@@ -7,71 +7,82 @@ import { SearchBar } from './components/SearchBar';
 import { CategoryNav } from './components/CategoryNav';
 import { ToolGrid } from './components/ToolGrid';
 import { AdPlaceholder } from './components/AdPlaceholder';
-import { Sparkles, Shield, Zap, Lock, Heart, CheckCircle2 } from 'lucide-react';
+import { SeoHead } from './components/SeoHead';
+import { ToolSeoContent } from './components/ToolSeoContent';
+import { StaticPage } from './components/StaticPages';
+import { CATEGORIES } from './data/tools';
+import { Sparkles, Shield, Heart, Loader2 } from 'lucide-react';
 
-// Tool Components
-import { ImageCompressor } from './tools/image/ImageCompressor';
-import { BatchImageCompressor } from './tools/image/BatchImageCompressor';
-import { ImageResizer } from './tools/image/ImageResizer';
-import { ImageCropper } from './tools/image/ImageCropper';
-import { RotateImage } from './tools/image/RotateImage';
-import { FormatConverter } from './tools/image/FormatConverter';
-import { PassportPhotoMaker } from './tools/image/PassportPhotoMaker';
-import { ImageWatermark } from './tools/image/ImageWatermark';
-import { ImageMetadataViewer } from './tools/image/ImageMetadataViewer';
+// Lazy Loaded Tool Components for Ultra-Fast Initial Page Load & High Performance
+const ImageCompressor = lazy(() => import('./tools/image/ImageCompressor').then(m => ({ default: m.ImageCompressor })));
+const BatchImageCompressor = lazy(() => import('./tools/image/BatchImageCompressor').then(m => ({ default: m.BatchImageCompressor })));
+const ImageResizer = lazy(() => import('./tools/image/ImageResizer').then(m => ({ default: m.ImageResizer })));
+const ImageCropper = lazy(() => import('./tools/image/ImageCropper').then(m => ({ default: m.ImageCropper })));
+const RotateImage = lazy(() => import('./tools/image/RotateImage').then(m => ({ default: m.RotateImage })));
+const FormatConverter = lazy(() => import('./tools/image/FormatConverter').then(m => ({ default: m.FormatConverter })));
+const PassportPhotoMaker = lazy(() => import('./tools/image/PassportPhotoMaker').then(m => ({ default: m.PassportPhotoMaker })));
+const ImageWatermark = lazy(() => import('./tools/image/ImageWatermark').then(m => ({ default: m.ImageWatermark })));
+const ImageMetadataViewer = lazy(() => import('./tools/image/ImageMetadataViewer').then(m => ({ default: m.ImageMetadataViewer })));
 
-import { MergePdf } from './tools/pdf/MergePdf';
-import { SplitPdf } from './tools/pdf/SplitPdf';
-import { RotatePdf } from './tools/pdf/RotatePdf';
-import { DeletePdfPages } from './tools/pdf/DeletePdfPages';
-import { ImageToPdf } from './tools/pdf/ImageToPdf';
-import { TextToPdf } from './tools/pdf/TextToPdf';
-import { PdfCompressor } from './tools/pdf/PdfCompressor';
-import { ReorderPdfPages } from './tools/pdf/ReorderPdfPages';
-import { ExtractPdfPages } from './tools/pdf/ExtractPdfPages';
-import { PdfToImage } from './tools/pdf/PdfToImage';
-import { PdfToPpt } from './tools/pdf/PdfToPpt';
-import { PptToPdf } from './tools/pdf/PptToPdf';
-import { WordToPdf } from './tools/pdf/WordToPdf';
-import { PdfToWord } from './tools/pdf/PdfToWord';
-import { ExcelToPdf } from './tools/pdf/ExcelToPdf';
+const MergePdf = lazy(() => import('./tools/pdf/MergePdf').then(m => ({ default: m.MergePdf })));
+const SplitPdf = lazy(() => import('./tools/pdf/SplitPdf').then(m => ({ default: m.SplitPdf })));
+const RotatePdf = lazy(() => import('./tools/pdf/RotatePdf').then(m => ({ default: m.RotatePdf })));
+const DeletePdfPages = lazy(() => import('./tools/pdf/DeletePdfPages').then(m => ({ default: m.DeletePdfPages })));
+const ImageToPdf = lazy(() => import('./tools/pdf/ImageToPdf').then(m => ({ default: m.ImageToPdf })));
+const TextToPdf = lazy(() => import('./tools/pdf/TextToPdf').then(m => ({ default: m.TextToPdf })));
+const PdfCompressor = lazy(() => import('./tools/pdf/PdfCompressor').then(m => ({ default: m.PdfCompressor })));
+const ReorderPdfPages = lazy(() => import('./tools/pdf/ReorderPdfPages').then(m => ({ default: m.ReorderPdfPages })));
+const ExtractPdfPages = lazy(() => import('./tools/pdf/ExtractPdfPages').then(m => ({ default: m.ExtractPdfPages })));
+const PdfToImage = lazy(() => import('./tools/pdf/PdfToImage').then(m => ({ default: m.PdfToImage })));
+const PdfToPpt = lazy(() => import('./tools/pdf/PdfToPpt').then(m => ({ default: m.PdfToPpt })));
+const PptToPdf = lazy(() => import('./tools/pdf/PptToPdf').then(m => ({ default: m.PptToPdf })));
+const WordToPdf = lazy(() => import('./tools/pdf/WordToPdf').then(m => ({ default: m.WordToPdf })));
+const PdfToWord = lazy(() => import('./tools/pdf/PdfToWord').then(m => ({ default: m.PdfToWord })));
+const ExcelToPdf = lazy(() => import('./tools/pdf/ExcelToPdf').then(m => ({ default: m.ExcelToPdf })));
 
-import { CreateZip } from './tools/file/CreateZip';
-import { ExtractZip } from './tools/file/ExtractZip';
-import { FileSizeChecker } from './tools/file/FileSizeChecker';
-import { FileTypeDetector } from './tools/file/FileTypeDetector';
-import { FileHashGenerator } from './tools/file/FileHashGenerator';
-import { BatchFileRenamer } from './tools/file/BatchFileRenamer';
+const CreateZip = lazy(() => import('./tools/file/CreateZip').then(m => ({ default: m.CreateZip })));
+const ExtractZip = lazy(() => import('./tools/file/ExtractZip').then(m => ({ default: m.ExtractZip })));
+const FileSizeChecker = lazy(() => import('./tools/file/FileSizeChecker').then(m => ({ default: m.FileSizeChecker })));
+const FileTypeDetector = lazy(() => import('./tools/file/FileTypeDetector').then(m => ({ default: m.FileTypeDetector })));
+const FileHashGenerator = lazy(() => import('./tools/file/FileHashGenerator').then(m => ({ default: m.FileHashGenerator })));
+const BatchFileRenamer = lazy(() => import('./tools/file/BatchFileRenamer').then(m => ({ default: m.BatchFileRenamer })));
 
-import { WordCounter } from './tools/text/WordCounter';
-import { CharacterCounter } from './tools/text/CharacterCounter';
-import { TextCaseConverter } from './tools/text/TextCaseConverter';
-import { RemoveDuplicateLines } from './tools/text/RemoveDuplicateLines';
-import { TextCleaner } from './tools/text/TextCleaner';
+const WordCounter = lazy(() => import('./tools/text/WordCounter').then(m => ({ default: m.WordCounter })));
+const CharacterCounter = lazy(() => import('./tools/text/CharacterCounter').then(m => ({ default: m.CharacterCounter })));
+const TextCaseConverter = lazy(() => import('./tools/text/TextCaseConverter').then(m => ({ default: m.TextCaseConverter })));
+const RemoveDuplicateLines = lazy(() => import('./tools/text/RemoveDuplicateLines').then(m => ({ default: m.RemoveDuplicateLines })));
+const TextCleaner = lazy(() => import('./tools/text/TextCleaner').then(m => ({ default: m.TextCleaner })));
 
-import { JsonFormatter } from './tools/dev/JsonFormatter';
-import { Base64Encoder } from './tools/dev/Base64Encoder';
-import { UrlEncoder } from './tools/dev/UrlEncoder';
-import { HashGenerator } from './tools/dev/HashGenerator';
-import { UuidGenerator } from './tools/dev/UuidGenerator';
-import { ColorConverter } from './tools/dev/ColorConverter';
-import { JwtDebugger } from './tools/dev/JwtDebugger';
-import { DiffChecker } from './tools/dev/DiffChecker';
-import { MarkdownPreviewer } from './tools/dev/MarkdownPreviewer';
+const JsonFormatter = lazy(() => import('./tools/dev/JsonFormatter').then(m => ({ default: m.JsonFormatter })));
+const Base64Encoder = lazy(() => import('./tools/dev/Base64Encoder').then(m => ({ default: m.Base64Encoder })));
+const UrlEncoder = lazy(() => import('./tools/dev/UrlEncoder').then(m => ({ default: m.UrlEncoder })));
+const HashGenerator = lazy(() => import('./tools/dev/HashGenerator').then(m => ({ default: m.HashGenerator })));
+const UuidGenerator = lazy(() => import('./tools/dev/UuidGenerator').then(m => ({ default: m.UuidGenerator })));
+const ColorConverter = lazy(() => import('./tools/dev/ColorConverter').then(m => ({ default: m.ColorConverter })));
+const JwtDebugger = lazy(() => import('./tools/dev/JwtDebugger').then(m => ({ default: m.JwtDebugger })));
+const DiffChecker = lazy(() => import('./tools/dev/DiffChecker').then(m => ({ default: m.DiffChecker })));
+const MarkdownPreviewer = lazy(() => import('./tools/dev/MarkdownPreviewer').then(m => ({ default: m.MarkdownPreviewer })));
 
-import { QrGenerator } from './tools/qr/QrGenerator';
-import { QrScanner } from './tools/qr/QrScanner';
-import { BarcodeGenerator } from './tools/qr/BarcodeGenerator';
-import { BarcodeScanner } from './tools/qr/BarcodeScanner';
+const QrGenerator = lazy(() => import('./tools/qr/QrGenerator').then(m => ({ default: m.QrGenerator })));
+const QrScanner = lazy(() => import('./tools/qr/QrScanner').then(m => ({ default: m.QrScanner })));
+const BarcodeGenerator = lazy(() => import('./tools/qr/BarcodeGenerator').then(m => ({ default: m.BarcodeGenerator })));
+const BarcodeScanner = lazy(() => import('./tools/qr/BarcodeScanner').then(m => ({ default: m.BarcodeScanner })));
 
-import { UnitConverter } from './tools/calc/UnitConverter';
-import { PercentageCalculator } from './tools/calc/PercentageCalculator';
-import { PasswordGenerator } from './tools/calc/PasswordGenerator';
-import { TimeCalculator } from './tools/calc/TimeCalculator';
-import { CsvJsonConverter } from './tools/calc/CsvJsonConverter';
+const UnitConverter = lazy(() => import('./tools/calc/UnitConverter').then(m => ({ default: m.UnitConverter })));
+const PercentageCalculator = lazy(() => import('./tools/calc/PercentageCalculator').then(m => ({ default: m.PercentageCalculator })));
+const PasswordGenerator = lazy(() => import('./tools/calc/PasswordGenerator').then(m => ({ default: m.PasswordGenerator })));
+const TimeCalculator = lazy(() => import('./tools/calc/TimeCalculator').then(m => ({ default: m.TimeCalculator })));
+const CsvJsonConverter = lazy(() => import('./tools/calc/CsvJsonConverter').then(m => ({ default: m.CsvJsonConverter })));
+
+const LoadingSpinner = () => (
+  <div className="flex flex-col items-center justify-center py-20 space-y-3">
+    <Loader2 className="w-8 h-8 text-purple-500 animate-spin" />
+    <span className="text-xs text-slate-400 font-medium">Loading tool workspace...</span>
+  </div>
+);
 
 const ToolRenderer: React.FC = () => {
-  const { currentRoute, activeTool, isFavorite, toggleFavorite } = useApp();
+  const { activeTool, isFavorite, toggleFavorite } = useApp();
 
   if (!activeTool) {
     return (
@@ -83,166 +94,137 @@ const ToolRenderer: React.FC = () => {
   }
 
   const renderToolComponent = () => {
-    switch (currentRoute) {
+    switch (activeTool.id) {
       // Image Tools
-      case '/tools/image-compressor':
+      case 'image-compressor':
         return <ImageCompressor />;
-      case '/tools/batch-image-compressor':
+      case 'batch-image-compressor':
         return <BatchImageCompressor />;
-      case '/tools/image-resizer':
+      case 'image-resizer':
         return <ImageResizer />;
-      case '/tools/image-cropper':
+      case 'image-cropper':
         return <ImageCropper />;
-      case '/tools/rotate-image':
-      case '/tools/flip-image':
+      case 'rotate-image':
+      case 'flip-image':
         return <RotateImage />;
-      case '/tools/png-to-jpg':
-      case '/tools/jpg-to-png':
-      case '/tools/jpg-to-webp':
-      case '/tools/image-to-webp':
-      case '/tools/webp-to-jpg':
-      case '/tools/svg-to-png':
-      case '/tools/heic-to-jpg':
+      case 'jpg-to-png':
+      case 'png-to-jpg':
+      case 'jpg-to-webp':
+      case 'webp-to-jpg':
         return <FormatConverter />;
-      case '/tools/passport-photo-maker':
+      case 'passport-photo-maker':
         return <PassportPhotoMaker />;
-      case '/tools/image-watermark':
+      case 'image-watermark':
         return <ImageWatermark />;
-      case '/tools/image-metadata-viewer':
+      case 'image-metadata-viewer':
         return <ImageMetadataViewer />;
 
       // PDF Tools
-      case '/tools/pdf-compressor':
-      case '/tools/compress-pdf':
+      case 'pdf-compressor':
         return <PdfCompressor />;
-      case '/tools/merge-pdf':
+      case 'merge-pdf':
         return <MergePdf />;
-      case '/tools/split-pdf':
+      case 'split-pdf':
         return <SplitPdf />;
-      case '/tools/rotate-pdf':
+      case 'rotate-pdf':
         return <RotatePdf />;
-      case '/tools/delete-pdf-pages':
+      case 'delete-pdf-pages':
         return <DeletePdfPages />;
-      case '/tools/reorder-pdf-pages':
+      case 'reorder-pdf-pages':
         return <ReorderPdfPages />;
-      case '/tools/extract-pdf-pages':
+      case 'extract-pdf-pages':
         return <ExtractPdfPages />;
-      case '/tools/pdf-to-image':
-      case '/tools/pdf-to-jpg':
-      case '/tools/pdf-to-png':
-      case '/tools/extract-pdf-images':
+      case 'pdf-to-image':
+      case 'pdf-to-jpg':
+      case 'pdf-to-png':
         return <PdfToImage />;
-      case '/tools/image-to-pdf':
-      case '/tools/jpg-to-pdf':
-      case '/tools/png-to-pdf':
+      case 'image-to-pdf':
         return <ImageToPdf />;
-      case '/tools/text-to-pdf':
+      case 'text-to-pdf':
         return <TextToPdf />;
-      case '/tools/pdf-to-ppt':
-      case '/tools/pdf-to-powerpoint':
+      case 'pdf-to-ppt':
         return <PdfToPpt />;
-      case '/tools/ppt-to-pdf':
-      case '/tools/powerpoint-to-pdf':
+      case 'ppt-to-pdf':
         return <PptToPdf />;
-      case '/tools/word-to-pdf':
+      case 'word-to-pdf':
         return <WordToPdf />;
-      case '/tools/pdf-to-word':
+      case 'pdf-to-word':
         return <PdfToWord />;
-      case '/tools/excel-to-pdf':
-      case '/tools/pdf-to-excel':
+      case 'excel-to-pdf':
         return <ExcelToPdf />;
 
       // File Tools
-      case '/tools/create-zip':
+      case 'create-zip':
         return <CreateZip />;
-      case '/tools/extract-zip':
+      case 'extract-zip':
         return <ExtractZip />;
-      case '/tools/file-size-checker':
-      case '/tools/file-size-converter':
+      case 'file-size-checker':
+      case 'file-size-converter':
         return <FileSizeChecker />;
-      case '/tools/file-type-detector':
+      case 'file-type-detector':
         return <FileTypeDetector />;
-      case '/tools/file-hash-generator':
+      case 'file-hash-generator':
         return <FileHashGenerator />;
-      case '/tools/batch-file-renamer':
+      case 'batch-file-renamer':
         return <BatchFileRenamer />;
 
       // Text Tools
-      case '/tools/word-counter':
-      case '/tools/reading-time-estimator':
+      case 'word-counter':
+      case 'line-counter':
         return <WordCounter />;
-      case '/tools/character-counter':
+      case 'character-counter':
         return <CharacterCounter />;
-      case '/tools/line-counter':
-        return <WordCounter />;
-      case '/tools/text-case-converter':
+      case 'text-case-converter':
         return <TextCaseConverter />;
-      case '/tools/remove-duplicate-lines':
-      case '/tools/sort-lines':
+      case 'remove-duplicate-lines':
         return <RemoveDuplicateLines />;
-      case '/tools/text-cleaner':
-      case '/tools/lorem-ipsum-generator':
+      case 'text-cleaner':
         return <TextCleaner />;
 
       // Developer Tools
-      case '/tools/json-formatter':
-      case '/tools/json-validator':
+      case 'json-formatter':
+      case 'json-validator':
         return <JsonFormatter />;
-      case '/tools/base64-encode':
-      case '/tools/base64-decode':
-      case '/tools/base64-encoder':
-      case '/tools/base64-decoder':
-      case '/tools/base64-image':
+      case 'base64-encoder':
+      case 'base64-decoder':
         return <Base64Encoder />;
-      case '/tools/url-encode':
-      case '/tools/url-decode':
-      case '/tools/url-encoder':
-      case '/tools/url-decoder':
+      case 'url-encoder':
+      case 'url-decoder':
         return <UrlEncoder />;
-      case '/tools/hash-generator':
-      case '/tools/sha256-generator':
-      case '/tools/md5-generator':
-        return <HashGenerator />;
-      case '/tools/uuid-generator':
+      case 'uuid-generator':
         return <UuidGenerator />;
-      case '/tools/color-converter':
-      case '/tools/color-picker':
-      case '/tools/hex-to-rgb':
-      case '/tools/rgb-to-hex':
+      case 'color-picker':
         return <ColorConverter />;
-      case '/tools/jwt-debugger':
+      case 'jwt-debugger':
         return <JwtDebugger />;
-      case '/tools/diff-checker':
+      case 'diff-checker':
         return <DiffChecker />;
-      case '/tools/markdown-previewer':
+      case 'markdown-previewer':
         return <MarkdownPreviewer />;
+      case 'hash-generator':
+        return <HashGenerator />;
 
       // QR & Barcode Tools
-      case '/tools/qr-code-generator':
-      case '/tools/wifi-qr-code':
-      case '/tools/vcard-qr-code':
+      case 'qr-code-generator':
         return <QrGenerator />;
-      case '/tools/qr-code-scanner':
+      case 'qr-code-scanner':
         return <QrScanner />;
-      case '/tools/barcode-generator':
+      case 'barcode-generator':
         return <BarcodeGenerator />;
-      case '/tools/barcode-scanner':
+      case 'barcode-scanner':
         return <BarcodeScanner />;
 
       // Calculators & Utilities
-      case '/tools/unit-converter':
+      case 'unit-converter':
         return <UnitConverter />;
-      case '/tools/percentage-calculator':
+      case 'percentage-calculator':
         return <PercentageCalculator />;
-      case '/tools/password-generator':
+      case 'password-generator':
         return <PasswordGenerator />;
-      case '/tools/date-difference':
-      case '/tools/date-calculator':
-      case '/tools/age-calculator':
-      case '/tools/time-calculator':
+      case 'date-calculator':
+      case 'age-calculator':
         return <TimeCalculator />;
-      case '/tools/csv-to-json':
-      case '/tools/json-to-csv':
+      case 'csv-to-json':
         return <CsvJsonConverter />;
 
       default:
@@ -259,15 +241,17 @@ const ToolRenderer: React.FC = () => {
 
   return (
     <div className="space-y-6">
+      <SeoHead tool={activeTool} />
+
       <Breadcrumb tool={activeTool} />
 
-      {/* Tool Header Card */}
-      <div className="rounded-3xl bg-[#0D1224] border border-white/[0.08] p-6 sm:p-8 space-y-4 shadow-xl">
+      {/* Primary Tool Header Card */}
+      <header className="rounded-3xl bg-[#0D1224] border border-white/[0.08] p-6 sm:p-8 space-y-4 shadow-xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div className="space-y-1">
+          <div className="space-y-1.5">
             <div className="flex items-center gap-3">
               <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
-                {activeTool.name}
+                {activeTool.h1 || activeTool.name}
               </h1>
               {activeTool.isLocalOnly && (
                 <span className="hidden sm:inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-1 rounded-full bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">
@@ -280,9 +264,10 @@ const ToolRenderer: React.FC = () => {
             </p>
           </div>
 
-          <div className="flex items-center gap-2 self-start sm:self-center">
+          <div className="flex items-center gap-2 self-start sm:self-center shrink-0">
             <button
               onClick={() => toggleFavorite(activeTool.id)}
+              aria-label={isFav ? 'Remove from favorites' : 'Add to favorites'}
               className={`flex items-center gap-1.5 px-3.5 py-2 rounded-2xl border text-xs font-semibold transition-all cursor-pointer ${
                 isFav
                   ? 'bg-pink-500/20 border-pink-500/40 text-pink-300'
@@ -294,22 +279,85 @@ const ToolRenderer: React.FC = () => {
             </button>
           </div>
         </div>
-      </div>
+      </header>
 
-      {/* Actual Active Tool Workspace */}
-      <main id="tool-workspace" className="min-h-[400px]">
-        {renderToolComponent()}
+      {/* Interactive Tool Workspace with Suspense */}
+      <main id="tool-workspace" className="min-h-[350px]">
+        <Suspense fallback={<LoadingSpinner />}>
+          {renderToolComponent()}
+        </Suspense>
       </main>
+
+      {/* SEO & GEO Content Sections (How to Use, Formats, FAQ, Related Tools) */}
+      <ToolSeoContent tool={activeTool} />
     </div>
   );
 };
 
 const MainContent: React.FC = () => {
-  const { currentRoute } = useApp();
+  const { currentRoute, activeCategory, activeTool } = useApp();
   const isHome = currentRoute === '/';
+
+  // Check if currentRoute is a static page
+  if (currentRoute === '/about') {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#070A14] text-slate-100 font-sans selection:bg-purple-500 selection:text-white">
+        <Header />
+        <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 w-full">
+          <StaticPage pageType="about" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentRoute === '/privacy') {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#070A14] text-slate-100 font-sans selection:bg-purple-500 selection:text-white">
+        <Header />
+        <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 w-full">
+          <StaticPage pageType="privacy" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentRoute === '/terms') {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#070A14] text-slate-100 font-sans selection:bg-purple-500 selection:text-white">
+        <Header />
+        <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 w-full">
+          <StaticPage pageType="terms" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  if (currentRoute === '/contact') {
+    return (
+      <div className="min-h-screen flex flex-col bg-[#070A14] text-slate-100 font-sans selection:bg-purple-500 selection:text-white">
+        <Header />
+        <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 w-full">
+          <StaticPage pageType="contact" />
+        </main>
+        <Footer />
+      </div>
+    );
+  }
+
+  const selectedCategoryInfo = CATEGORIES.find(c => c.id === activeCategory);
 
   return (
     <div className="min-h-screen flex flex-col bg-[#070A14] text-slate-100 font-sans selection:bg-purple-500 selection:text-white">
+      {isHome && (
+        <SeoHead
+          isHome={true}
+          category={activeCategory !== 'all' ? selectedCategoryInfo : undefined}
+        />
+      )}
+
       <Header />
 
       <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 sm:pt-8 pb-16 w-full">
@@ -318,11 +366,11 @@ const MainContent: React.FC = () => {
             {/* Top Ad Banner */}
             <AdPlaceholder slot="top-banner" />
 
-            {/* Quick Hero / Search Launcher */}
+            {/* Hero & Search Launcher */}
             <section className="text-center space-y-6 pt-4 pb-2">
               <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-300 text-xs font-semibold tracking-wide">
                 <Sparkles className="w-3.5 h-3.5 text-purple-400" />
-                <span>50+ Free Privacy-First Browser Tools</span>
+                <span>60+ Free Privacy-First Browser Tools</span>
               </div>
 
               <h1 className="text-3xl sm:text-5xl font-black text-white tracking-tight max-w-3xl mx-auto leading-tight">
@@ -341,7 +389,7 @@ const MainContent: React.FC = () => {
               </div>
             </section>
 
-            {/* Category Filter Chips */}
+            {/* Category Filter Chips & Interactive Tool Grid */}
             <section className="space-y-6">
               <CategoryNav />
               <ToolGrid />

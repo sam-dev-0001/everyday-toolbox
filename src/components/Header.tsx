@@ -54,15 +54,16 @@ export const Header: React.FC = () => {
         {/* Left: Logo */}
         <button
           onClick={handleLogoClick}
-          className="flex items-center gap-2.5 group text-left focus:outline-none"
+          className="flex items-center gap-2.5 group text-left focus:outline-none cursor-pointer"
           aria-label="Everyday Toolbox Home"
         >
-          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#7C3AED] via-[#8B5CF6] to-[#3B82F6] flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform duration-200">
+          <div className="w-9 h-9 rounded-xl bg-gradient-to-tr from-[#7C3AED] via-[#8B5CF6] to-[#3B82F6] flex items-center justify-center shadow-lg shadow-purple-500/20 group-hover:scale-105 transition-transform duration-200 shrink-0">
             <Sparkles className="w-5 h-5 text-white" />
           </div>
           <div>
-            <span className="font-extrabold text-lg tracking-tight text-white flex items-center gap-1.5">
-              Everyday<span className="text-purple-400">Toolbox</span>
+            <span className="font-extrabold text-lg tracking-tight flex items-center gap-0.5">
+              <span className={theme === 'light' ? 'text-slate-900' : 'text-white'}>Everyday</span>
+              <span className={theme === 'light' ? 'text-purple-600' : 'text-purple-400'}>Toolbox</span>
             </span>
           </div>
         </button>
