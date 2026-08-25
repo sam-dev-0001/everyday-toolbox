@@ -1,25 +1,21 @@
 const fs = require('fs');
 const path = require('path');
 
-const BASE_URL = 'https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app';
-const currentDate = new Date().toISOString().split('T')[0];
+const BASE_URL = 'https://everydaytool.pages.dev';
 
-const toolsFile = fs.readFileSync(path.join(__dirname, '../src/data/tools.ts'), 'utf8');
+const toolsFilePath = path.join(__dirname, '../src/data/tools.ts');
+const toolsFileContent = fs.readFileSync(toolsFilePath, 'utf8');
 
-// Extract routes from tools.ts
-const routeMatches = [...toolsFile.matchAll(/route:\s*'([^']+)'/g)].map(m => m[1]);
-const uniqueRoutes = Array.from(new Set(routeMatches));
+// Dynamically extract category slugs from tools.ts
+const categoryMatches = [...toolsFileContent.matchAll(/slug:\s*'([^']+)'/g)].map(m => m[1]);
+// Filter out /tools if homepage already covers all tools or keep unique non-home slugs
+const uniqueCategorySlugs = Array.from(new Set(categoryMatches)).filter(slug => slug !== '/tools' && slug.startsWith('/'));
 
-const categorySlugs = [
-  '/image-tools',
-  '/pdf-tools',
-  '/text-tools',
-  '/developer-tools',
-  '/file-tools',
-  '/qr-barcode-tools',
-  '/everyday-utilities',
-];
+// Dynamically extract tool routes from tools.ts
+const routeMatches = [...toolsFileContent.matchAll(/route:\s*'([^']+)'/g)].map(m => m[1]);
+const uniqueToolRoutes = Array.from(new Set(routeMatches));
 
+// Real static pages in the project (defined in App.tsx / StaticPages.tsx)
 const staticPages = [
   '/about',
   '/privacy',
@@ -28,48 +24,32 @@ const staticPages = [
 ];
 
 let xml = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <!-- Homepage -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>${BASE_URL}/</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
   </url>
 `;
 
 // Categories
-categorySlugs.forEach(cat => {
+uniqueCategorySlugs.forEach(catSlug => {
   xml += `  <url>
-    <loc>${BASE_URL}${cat}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>${BASE_URL}${catSlug}</loc>
   </url>
 `;
 });
 
 // Tools
-uniqueRoutes.forEach(r => {
+uniqueToolRoutes.forEach(route => {
   xml += `  <url>
-    <loc>${BASE_URL}${r}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>${BASE_URL}${route}</loc>
   </url>
 `;
 });
 
 // Static Pages
-staticPages.forEach(p => {
+staticPages.forEach(page => {
   xml += `  <url>
-    <loc>${BASE_URL}${p}</loc>
-    <lastmod>${currentDate}</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>${BASE_URL}${page}</loc>
   </url>
 `;
 });
@@ -79,4 +59,5 @@ xml += `</urlset>\n`;
 const sitemapPath = path.join(__dirname, '../public/sitemap.xml');
 fs.writeFileSync(sitemapPath, xml, 'utf8');
 
-console.log(`Successfully generated sitemap with ${1 + categorySlugs.length + uniqueRoutes.length + staticPages.length} URLs at ${sitemapPath}`);
+const totalUrls = 1 + uniqueCategorySlugs.length + uniqueToolRoutes.length + staticPages.length;
+console.log(`Successfully generated sitemap with ${totalUrls} URLs at ${sitemapPath}`);

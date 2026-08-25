@@ -23,7 +23,7 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
   useEffect(() => {
     // Determine effective metadata
     const siteName = 'Everyday Toolbox';
-    const origin = typeof window !== 'undefined' ? window.location.origin : 'https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app';
+    const origin = typeof window !== 'undefined' && window.location.origin && !window.location.origin.includes('localhost') ? window.location.origin : 'https://everydaytool.pages.dev';
     
     let metaTitle = title || 'Everyday Toolbox – 60+ Free Online Web Tools & Utilities';
     let metaDesc = description || '60+ free, fast, client-side tools for images, PDFs, text, file management, developer utilities, and QR codes. 100% private in-browser processing.';

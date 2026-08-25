@@ -1,439 +1,219 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
-        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
-  <!-- Homepage -->
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
+    <loc>https://everydaytool.pages.dev/</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/image-tools</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://everydaytool.pages.dev/image-tools</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/pdf-tools</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://everydaytool.pages.dev/pdf-tools</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/text-tools</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://everydaytool.pages.dev/text-tools</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/developer-tools</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://everydaytool.pages.dev/developer-tools</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/file-tools</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://everydaytool.pages.dev/file-tools</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/qr-barcode-tools</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://everydaytool.pages.dev/qr-barcode-tools</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/everyday-utilities</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
+    <loc>https://everydaytool.pages.dev/everyday-utilities</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/image-compressor</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/image-compressor</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/batch-image-compressor</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/batch-image-compressor</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/image-resizer</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/image-resizer</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/image-cropper</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/image-cropper</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/rotate-image</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/rotate-image</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/flip-image</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/flip-image</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/jpg-to-png</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/jpg-to-png</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/png-to-jpg</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/png-to-jpg</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/jpg-to-webp</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/jpg-to-webp</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/webp-to-jpg</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/webp-to-jpg</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/image-to-pdf</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/image-to-pdf</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/passport-photo-maker</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/passport-photo-maker</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/image-watermark</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/image-watermark</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/image-metadata-viewer</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/image-metadata-viewer</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/pdf-compressor</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/pdf-compressor</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/merge-pdf</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/merge-pdf</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/split-pdf</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/split-pdf</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/rotate-pdf</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/rotate-pdf</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/delete-pdf-pages</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/delete-pdf-pages</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/reorder-pdf-pages</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/reorder-pdf-pages</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/extract-pdf-pages</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/extract-pdf-pages</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/pdf-to-image</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/pdf-to-image</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/pdf-to-jpg</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/pdf-to-jpg</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/pdf-to-png</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/pdf-to-png</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/text-to-pdf</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/text-to-pdf</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/pdf-to-ppt</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/pdf-to-ppt</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/ppt-to-pdf</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/ppt-to-pdf</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/pdf-to-word</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/pdf-to-word</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/word-to-pdf</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/word-to-pdf</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/excel-to-pdf</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/excel-to-pdf</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/create-zip</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/create-zip</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/extract-zip</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/extract-zip</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/file-size-checker</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/file-size-checker</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/file-type-detector</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/file-type-detector</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/file-hash-generator</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/file-hash-generator</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/batch-file-renamer</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/batch-file-renamer</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/word-counter</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/word-counter</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/character-counter</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/character-counter</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/line-counter</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/line-counter</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/text-case-converter</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/text-case-converter</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/remove-duplicate-lines</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/remove-duplicate-lines</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/text-cleaner</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/text-cleaner</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/json-formatter</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/json-formatter</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/json-validator</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/json-validator</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/base64-encoder</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/base64-encoder</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/base64-decoder</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/base64-decoder</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/url-encoder</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/url-encoder</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/url-decoder</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/url-decoder</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/uuid-generator</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/uuid-generator</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/color-picker</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/color-picker</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/qr-code-generator</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/qr-code-generator</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/qr-code-scanner</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/qr-code-scanner</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/barcode-generator</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/barcode-generator</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/barcode-scanner</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/barcode-scanner</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/age-calculator</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/age-calculator</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/unit-converter</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/unit-converter</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/percentage-calculator</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/percentage-calculator</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/date-calculator</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/date-calculator</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/password-generator</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/password-generator</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/file-size-converter</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://everydaytool.pages.dev/file-size-converter</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/about</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://everydaytool.pages.dev/about</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/privacy</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://everydaytool.pages.dev/privacy</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/terms</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://everydaytool.pages.dev/terms</loc>
   </url>
   <url>
-    <loc>https://ais-dev-fhia5cq7rwon7eq7g2r2lz-602736084522.asia-southeast1.run.app/contact</loc>
-    <lastmod>2026-08-24</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
+    <loc>https://everydaytool.pages.dev/contact</loc>
   </url>
 </urlset>
