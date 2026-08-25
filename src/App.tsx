@@ -10,7 +10,7 @@ import { AdPlaceholder } from './components/AdPlaceholder';
 import { SeoHead } from './components/SeoHead';
 import { ToolSeoContent } from './components/ToolSeoContent';
 import { StaticPage } from './components/StaticPages';
-import { CATEGORIES } from './data/tools';
+import { CATEGORIES, TOOLS } from './data/tools';
 import { Sparkles, Shield, Heart, Loader2 } from 'lucide-react';
 
 // Lazy Loaded Tool Components for Ultra-Fast Initial Page Load & High Performance
@@ -348,6 +348,54 @@ const MainContent: React.FC = () => {
   }
 
   const selectedCategoryInfo = CATEGORIES.find(c => c.id === activeCategory);
+  const matchedCategoryRoute = CATEGORIES.find(c => c.slug === currentRoute);
+
+  // Check if currentRoute is a Category page (e.g., /image-tools, /pdf-tools, /tools)
+  if (matchedCategoryRoute) {
+    const categoryTools = matchedCategoryRoute.id === 'all'
+      ? TOOLS
+      : TOOLS.filter(t => t.category === matchedCategoryRoute.id);
+
+    return (
+      <div className="min-h-screen flex flex-col bg-[#070A14] text-slate-100 font-sans selection:bg-purple-500 selection:text-white">
+        <SeoHead category={matchedCategoryRoute} />
+        <Header />
+
+        <main className="flex-1 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-6 pb-16 w-full space-y-8">
+          <Breadcrumb category={matchedCategoryRoute} />
+
+          {/* Category Header Card */}
+          <section className="rounded-3xl bg-[#0D1224] border border-white/[0.08] p-6 sm:p-8 space-y-4 shadow-xl">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <div className="space-y-2">
+                <div className="flex items-center gap-3">
+                  <h1 className="text-2xl sm:text-4xl font-black text-white tracking-tight">
+                    {matchedCategoryRoute.id === 'all'
+                      ? 'All Online Tools & Utilities'
+                      : `Free Online ${matchedCategoryRoute.name} Tools`}
+                  </h1>
+                  <span className="inline-flex items-center text-xs font-bold px-3 py-1 rounded-full bg-purple-500/15 text-purple-300 border border-purple-500/30">
+                    {categoryTools.length} Tools
+                  </span>
+                </div>
+                <p className="text-xs sm:text-sm text-slate-400 max-w-2xl leading-relaxed">
+                  {matchedCategoryRoute.seoDescription}
+                </p>
+              </div>
+            </div>
+          </section>
+
+          {/* Category Navigation & Tool Grid */}
+          <section className="space-y-6">
+            <CategoryNav />
+            <ToolGrid tools={categoryTools} />
+          </section>
+        </main>
+
+        <Footer />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex flex-col bg-[#070A14] text-slate-100 font-sans selection:bg-purple-500 selection:text-white">

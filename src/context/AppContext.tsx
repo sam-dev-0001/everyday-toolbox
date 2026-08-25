@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { Tool, ToolCategory } from '../types';
-import { TOOLS } from '../data/tools';
+import { CATEGORIES, TOOLS } from '../data/tools';
 
 interface AppContextType {
   theme: 'dark' | 'light';
@@ -98,12 +98,23 @@ export function AppProvider({ children }: { children: React.ReactNode }) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Sync activeCategory when route changes to a category slug
+  useEffect(() => {
+    const catMatch = CATEGORIES.find(c => c.slug === currentRoute);
+    if (catMatch) {
+      setActiveCategory(catMatch.id);
+    } else if (currentRoute === '/') {
+      // keep current or leave as is
+    }
+  }, [currentRoute]);
+
   // Find active tool if on /tools/:toolId or clean /:toolId or t.route
   const activeTool = React.useMemo(() => {
     if (currentRoute === '/' || currentRoute === '') return null;
     
     // Check if route matches static pages or categories
-    if (['/about', '/privacy', '/terms', '/contact'].includes(currentRoute)) return null;
+    if (['/about', '/privacy', '/terms', '/contact', '/tools'].includes(currentRoute)) return null;
+    if (CATEGORIES.some(c => c.slug === currentRoute)) return null;
     if (currentRoute.startsWith('/category/')) return null;
 
     // Check direct route match

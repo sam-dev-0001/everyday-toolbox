@@ -4,7 +4,7 @@ import { Braces, Copy, Check, Sparkles, Trash2, AlertCircle, CheckCircle2, Minim
 
 export const JsonFormatter: React.FC = () => {
   const [input, setInput] = useState<string>(
-    '{"app":"Everyday Toolbox","version":1,"features":["privacy","no-backend","fast"],"config":{"theme":"dark","port":3000,"active":true}}'
+    '{"app":"Everyday Tool","version":1,"features":["privacy","no-backend","fast"],"config":{"theme":"dark","port":3000,"active":true}}'
   );
   const [indentSize, setIndentSize] = useState<number>(2);
   const [copied, setCopied] = useState<boolean>(false);

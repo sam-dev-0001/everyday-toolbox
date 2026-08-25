@@ -34,7 +34,7 @@ export const OfficePdfPlaceholder: React.FC<OfficePdfPlaceholderProps> = ({
         <div className="space-y-1">
           <h4 className="text-sm font-bold text-white">Browser-Only Processing Notice</h4>
           <p className="text-xs text-slate-300 leading-relaxed">
-            Everyday Toolbox is strictly <strong>100% client-side with zero backend servers</strong> to protect your total file privacy.
+            Everyday Tool is strictly <strong>100% client-side with zero backend servers</strong> to protect your total file privacy.
             Complex binary Office parsing ({sourceFormat} ➔ {targetFormat}) requires specialized server rendering suites and is currently in active WebAssembly development for full browser-side execution in Version 2.
           </p>
         </div>

@@ -6,7 +6,7 @@ import { PDFDocument, StandardFonts, rgb, PageSizes } from 'pdf-lib';
 
 export const TextToPdf: React.FC = () => {
   const [text, setText] = useState<string>(
-    '# Everyday Toolbox Note\n\nThis is a clean document generated 100% inside your browser using client-side JavaScript.\n\nKey Benefits:\n• 100% Private\n• Instant generation\n• Zero file uploads to any server'
+    '# Everyday Tool Note\n\nThis is a clean document generated 100% inside your browser using client-side JavaScript.\n\nKey Benefits:\n• 100% Private\n• Instant generation\n• Zero file uploads to any server'
   );
   const [docTitle, setDocTitle] = useState<string>('Document');
   const [fontSize, setFontSize] = useState<number>(12);

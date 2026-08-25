@@ -37,8 +37,8 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
       {pageType === 'about' && (
         <>
           <SeoHead
-            title="About Everyday Toolbox – Free, Fast & Private Online Utilities"
-            description="Learn more about Everyday Toolbox. 60+ free web utilities designed for instant productivity with 100% private in-browser processing."
+            title="About Everyday Tool – Free, Fast & Private Online Utilities"
+            description="Learn more about Everyday Tool. 60+ free web utilities designed for instant productivity with 100% private in-browser processing."
           />
           <div className="space-y-8">
             <div className="space-y-3">
@@ -47,7 +47,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
                   <Sparkles className="w-5 h-5 text-white" />
                 </div>
                 <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                  About Everyday Toolbox
+                  About Everyday Tool
                 </h1>
               </div>
               <p className="text-base sm:text-lg text-slate-400 leading-relaxed">
@@ -57,7 +57,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
 
             <div className="prose prose-invert max-w-none space-y-6 text-sm sm:text-base leading-relaxed text-slate-300">
               <p>
-                <strong>Everyday Toolbox</strong> is a curated collection of 60+ essential web tools designed to solve daily digital tasks without hassle, software installations, paywalls, or privacy compromises.
+                <strong>Everyday Tool</strong> is a curated collection of 60+ essential web tools designed to solve daily digital tasks without hassle, software installations, paywalls, or privacy compromises.
               </p>
 
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-5 pt-4">
@@ -94,7 +94,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
 
               <h2 className="text-xl font-bold text-white pt-6">Our Mission</h2>
               <p>
-                Our mission is to provide the fastest, cleanest, and most trustworthy online utility suite on the web. Whether you need to compress a photograph for an application, merge PDF contracts, format API JSON payloads, or generate a Wi-Fi QR code, Everyday Toolbox gets the job done in seconds.
+                Our mission is to provide the fastest, cleanest, and most trustworthy online utility suite on the web. Whether you need to compress a photograph for an application, merge PDF contracts, format API JSON payloads, or generate a Wi-Fi QR code, Everyday Tool gets the job done in seconds.
               </p>
             </div>
           </div>
@@ -105,7 +105,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
       {pageType === 'privacy' && (
         <>
           <SeoHead
-            title="Privacy Policy – Everyday Toolbox"
+            title="Privacy Policy – Everyday Tool"
             description="Our privacy commitment: zero server uploads, zero file tracking. All calculations and file conversions happen 100% locally in your browser."
           />
           <div className="space-y-8">
@@ -124,7 +124,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
             <div className="rounded-2xl bg-emerald-500/10 border border-emerald-500/20 p-5 flex items-start gap-4">
               <Lock className="w-5 h-5 text-emerald-400 shrink-0 mt-0.5" />
               <div className="text-xs sm:text-sm text-emerald-200 leading-relaxed">
-                <strong>Core Privacy Guarantee:</strong> Everyday Toolbox does not upload, store, log, or transmit any files, photos, PDF documents, or text you process. All processing executes 100% on your local device via client-side JavaScript, Canvas, and Web Crypto APIs.
+                <strong>Core Privacy Guarantee:</strong> Everyday Tool does not upload, store, log, or transmit any files, photos, PDF documents, or text you process. All processing executes 100% on your local device via client-side JavaScript, Canvas, and Web Crypto APIs.
               </div>
             </div>
 
@@ -157,8 +157,8 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
       {pageType === 'terms' && (
         <>
           <SeoHead
-            title="Terms of Service – Everyday Toolbox"
-            description="Terms of service and usage conditions for Everyday Toolbox free online web utilities."
+            title="Terms of Service – Everyday Tool"
+            description="Terms of service and usage conditions for Everyday Tool free online web utilities."
           />
           <div className="space-y-8">
             <h1 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
@@ -169,7 +169,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
             <div className="prose prose-invert max-w-none space-y-5 text-xs sm:text-sm leading-relaxed text-slate-300">
               <h2 className="text-lg font-bold text-white">1. Permitted Use</h2>
               <p>
-                Everyday Toolbox provides free online utilities for personal, educational, and commercial workflows. You are free to use these tools without recurring fees or subscription requirements.
+                Everyday Tool provides free online utilities for personal, educational, and commercial workflows. You are free to use these tools without recurring fees or subscription requirements.
               </p>
 
               <h2 className="text-lg font-bold text-white">2. Disclaimer of Warranties</h2>
@@ -179,7 +179,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
 
               <h2 className="text-lg font-bold text-white">3. Intellectual Property</h2>
               <p>
-                Everyday Toolbox, its branding, interface design, and custom code are protected under applicable intellectual property laws. All output files, processed images, and documents remain 100% your own property.
+                Everyday Tool, its branding, interface design, and custom code are protected under applicable intellectual property laws. All output files, processed images, and documents remain 100% your own property.
               </p>
             </div>
           </div>
@@ -190,8 +190,8 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
       {pageType === 'contact' && (
         <>
           <SeoHead
-            title="Contact Everyday Toolbox – Feedback & Support"
-            description="Get in touch with the Everyday Toolbox team. Send questions, feature suggestions, or tool requests."
+            title="Contact Everyday Tool – Feedback & Support"
+            description="Get in touch with the Everyday Tool team. Send questions, feature suggestions, or tool requests."
           />
           <div className="space-y-8">
             <div className="space-y-3">
@@ -215,7 +215,7 @@ export const StaticPage: React.FC<StaticPageProps> = ({ pageType }) => {
                 </div>
                 <h3 className="text-xl font-bold text-white">Thank You for Your Feedback!</h3>
                 <p className="text-sm text-slate-400 max-w-md mx-auto">
-                  Your message has been received. We continuously improve Everyday Toolbox based on community suggestions.
+                  Your message has been received. We continuously improve Everyday Tool based on community suggestions.
                 </p>
                 <button
                   onClick={() => {

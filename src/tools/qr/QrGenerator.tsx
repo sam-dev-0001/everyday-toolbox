@@ -9,7 +9,7 @@ export const QrGenerator: React.FC = () => {
 
   // URL / Text payload
   const [url, setUrl] = useState<string>('https://everydaytoolbox.app');
-  const [text, setText] = useState<string>('Hello from Everyday Toolbox!');
+  const [text, setText] = useState<string>('Hello from Everyday Tool!');
 
   // WiFi payload
   const [ssid, setSsid] = useState<string>('Home-WiFi');

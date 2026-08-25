@@ -7,7 +7,7 @@
     </linearGradient>
   </defs>
   
-  <!-- Rounded squircle background matching Everyday Toolbox logo -->
+  <!-- Rounded squircle background matching Everyday Tool logo -->
   <rect width="512" height="512" rx="120" ry="120" fill="url(#et-gradient)" />
   
   <!-- Centered Sparkles icon from Lucide (scaled to match 5/9 ratio) -->

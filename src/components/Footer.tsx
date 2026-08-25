@@ -10,7 +10,12 @@ export const Footer: React.FC = () => {
 
   const handleCategoryNav = (catId: ToolCategory) => {
     setActiveCategory(catId);
-    navigate('/');
+    const cat = CATEGORIES.find(c => c.id === catId);
+    if (cat && cat.id !== 'all' && cat.slug) {
+      navigate(cat.slug);
+    } else {
+      navigate('/');
+    }
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -27,7 +32,7 @@ export const Footer: React.FC = () => {
               </div>
               <span className="font-extrabold text-base tracking-tight flex items-center gap-0.5">
                 <span className="text-white">Everyday</span>
-                <span className="text-purple-400">Toolbox</span>
+                <span className="text-purple-400">Tool</span>
               </span>
             </div>
             <p className="text-xs text-slate-400 max-w-sm">
@@ -57,7 +62,7 @@ export const Footer: React.FC = () => {
         {/* Bottom footer row */}
         <div className="pt-6 border-t border-white/[0.06] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs">
           <div className="text-slate-400">
-            © 2026 Everyday Toolbox. All rights reserved. 100% Private Client-Side Utilities.
+            © 2026 Everyday Tool. All rights reserved. 100% Private Client-Side Utilities.
           </div>
 
           <div className="flex items-center gap-4 text-slate-400">
@@ -103,14 +108,14 @@ export const Footer: React.FC = () => {
             <h3 className="text-lg font-bold text-white capitalize">
               {modalType === 'privacy' && 'Privacy Policy'}
               {modalType === 'terms' && 'Terms of Service'}
-              {modalType === 'contact' && 'Contact Everyday Toolbox'}
+              {modalType === 'contact' && 'Contact Everyday Tool'}
             </h3>
 
             <div className="text-xs sm:text-sm text-slate-300 space-y-3 leading-relaxed max-h-96 overflow-y-auto pr-2">
               {modalType === 'privacy' && (
                 <>
                   <p>
-                    Everyday Toolbox operates entirely on a <strong>client-side execution model</strong>.
+                    Everyday Tool operates entirely on a <strong>client-side execution model</strong>.
                   </p>
                   <p>
                     <strong>1. No File Uploads:</strong> When you compress an image, merge a PDF, convert text, or calculate numbers, your files and data never leave your browser. All processing is carried out in local memory via JavaScript, Web APIs, and Canvas.
@@ -124,7 +129,7 @@ export const Footer: React.FC = () => {
               {modalType === 'terms' && (
                 <>
                   <p>
-                    Everyday Toolbox provides free online utilities on an "as is" and "as available" basis without warranties of any kind.
+                    Everyday Tool provides free online utilities on an "as is" and "as available" basis without warranties of any kind.
                   </p>
                   <p>
                     By using this service, you agree not to use the tools for illegal, abusive, or harmful activities. Because all operations are executed on your local device, you maintain full ownership and responsibility for your files and documents.
@@ -135,10 +140,10 @@ export const Footer: React.FC = () => {
               {modalType === 'contact' && (
                 <>
                   <p>
-                    Have tool suggestions or feedback? Everyday Toolbox is built to provide the fastest, simplest utility experience.
+                    Have tool suggestions or feedback? Everyday Tool is built to provide the fastest, simplest utility experience.
                   </p>
                   <p className="p-3 rounded-xl bg-[#11182C] border border-white/[0.08] font-mono text-purple-300 text-xs">
-                    support@everydaytoolbox.app
+                    support@everydaytool.pages.dev
                   </p>
                   <p className="text-xs text-slate-400">
                     We typically review tool suggestions and browser compatibility reports within 24-48 hours.

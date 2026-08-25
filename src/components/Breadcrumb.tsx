@@ -1,14 +1,15 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
 import { ChevronRight, Home } from 'lucide-react';
-import { Tool } from '../types';
+import { Tool, CategoryInfo } from '../types';
 import { CATEGORIES } from '../data/tools';
 
 interface BreadcrumbProps {
   tool?: Tool | null;
+  category?: CategoryInfo | null;
 }
 
-export const Breadcrumb: React.FC<BreadcrumbProps> = ({ tool }) => {
+export const Breadcrumb: React.FC<BreadcrumbProps> = ({ tool, category }) => {
   const { navigate, setActiveCategory } = useApp();
 
   const handleHomeClick = () => {
@@ -16,14 +17,14 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ tool }) => {
     navigate('/');
   };
 
+  const categoryInfo = category || (tool ? CATEGORIES.find(c => c.id === tool.category) : null);
+
   const handleCategoryClick = () => {
-    if (tool) {
-      setActiveCategory(tool.category);
-      navigate('/');
+    if (categoryInfo) {
+      setActiveCategory(categoryInfo.id);
+      navigate(categoryInfo.slug || '/');
     }
   };
-
-  const categoryInfo = tool ? CATEGORIES.find(c => c.id === tool.category) : null;
 
   return (
     <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-xs text-slate-400 mb-4 sm:mb-6">
@@ -35,15 +36,21 @@ export const Breadcrumb: React.FC<BreadcrumbProps> = ({ tool }) => {
         <span>Home</span>
       </button>
 
-      {categoryInfo && (
+      {categoryInfo && categoryInfo.id !== 'all' && (
         <>
           <ChevronRight className="w-3 h-3 text-slate-400" />
-          <button
-            onClick={handleCategoryClick}
-            className="hover:text-white transition-colors cursor-pointer capitalize"
-          >
-            {categoryInfo.name} Tools
-          </button>
+          {tool ? (
+            <button
+              onClick={handleCategoryClick}
+              className="hover:text-white transition-colors cursor-pointer capitalize"
+            >
+              {categoryInfo.name} Tools
+            </button>
+          ) : (
+            <span className="text-purple-300 font-semibold truncate max-w-[200px] sm:max-w-none">
+              {categoryInfo.name} Tools
+            </span>
+          )}
         </>
       )}
 

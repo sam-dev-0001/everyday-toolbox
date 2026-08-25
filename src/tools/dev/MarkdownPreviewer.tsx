@@ -4,9 +4,9 @@ import { FileCode, Eye, Copy, Check, Download, Sparkles } from 'lucide-react';
 
 export const MarkdownPreviewer: React.FC = () => {
   const [markdown, setMarkdown] = useState<string>(
-`# Everyday Toolbox 🛠️
+`# Everyday Tool 🛠️
 
-**Everyday Toolbox** is a fast, free, modern suite of 50+ online tools.
+**Everyday Tool** is a fast, free, modern suite of 50+ online tools.
 
 ## ✨ Key Features
 - **100% Client-Side:** Zero file uploads to external servers.
@@ -15,7 +15,7 @@ export const MarkdownPreviewer: React.FC = () => {
 
 ### Code Sample
 \`\`\`typescript
-const app = "Everyday Toolbox";
+const app = "Everyday Tool";
 console.log(\`Running \${app} safely in browser!\`);
 \`\`\`
 

@@ -4,7 +4,7 @@ import { Binary, Copy, Check, Trash2, ArrowDownUp, Upload, FileCode } from 'luci
 
 export const Base64Encoder: React.FC = () => {
   const [mode, setMode] = useState<'encode' | 'decode'>('encode');
-  const [input, setInput] = useState<string>('Everyday Toolbox — Secure, Fast, 100% Client-Side');
+  const [input, setInput] = useState<string>('Everyday Tool — Secure, Fast, 100% Client-Side');
   const [copied, setCopied] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
 

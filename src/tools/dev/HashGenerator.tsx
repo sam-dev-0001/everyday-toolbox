@@ -3,7 +3,7 @@ import { AdPlaceholder } from '../../components/AdPlaceholder';
 import { Hash, Copy, Check, Upload, Trash2, Shield } from 'lucide-react';
 
 export const HashGenerator: React.FC = () => {
-  const [input, setInput] = useState<string>('Everyday Toolbox');
+  const [input, setInput] = useState<string>('Everyday Tool');
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
 
   const [sha256, setSha256] = useState<string>('');

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Tool, CategoryInfo } from '../types';
+import { CATEGORIES } from '../data/tools';
 
 interface SeoHeadProps {
   title?: string;
@@ -22,13 +23,13 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
 }) => {
   useEffect(() => {
     // Determine effective metadata
-    const siteName = 'Everyday Toolbox';
-    const origin = typeof window !== 'undefined' && window.location.origin && !window.location.origin.includes('localhost') ? window.location.origin : 'https://everydaytool.pages.dev';
+    const siteName = 'EverydayTool';
+    const origin = 'https://everydaytool.pages.dev';
     
-    let metaTitle = title || 'Everyday Toolbox – 60+ Free Online Web Tools & Utilities';
-    let metaDesc = description || '60+ free, fast, client-side tools for images, PDFs, text, file management, developer utilities, and QR codes. 100% private in-browser processing.';
+    let metaTitle = title || 'EverydayTool - Free Online Tools';
+    let metaDesc = description || 'EverydayTool provides 60+ free, fast, and private online tools for images, PDFs, text manipulation, file management, developer utilities, and everyday calculations. 100% in-browser processing.';
     let metaKeywords = keywords ? keywords.join(', ') : 'online tools, image compressor, pdf merger, word counter, json formatter, qr code generator, free web utilities';
-    let effectiveCanonical = canonicalUrl || (typeof window !== 'undefined' ? window.location.href : origin);
+    let effectiveCanonical = canonicalUrl || origin;
 
     if (tool) {
       metaTitle = tool.seoTitle || `${tool.name} – Free Online Tool | ${siteName}`;
@@ -40,9 +41,9 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
       metaDesc = category.seoDescription || `Free online ${category.name.toLowerCase()} tools running directly in your browser.`;
       effectiveCanonical = `${origin}${category.slug || `/?category=${category.id}`}`;
     } else if (isHome) {
-      metaTitle = 'Everyday Toolbox – 60+ Free, Fast & Private Online Web Tools';
-      metaDesc = 'Free, lightning-fast online tools for images, PDFs, text manipulation, developer utilities, QR codes, and calculators. 100% private client-side processing.';
-      effectiveCanonical = origin;
+      metaTitle = 'EverydayTool - Free Online Tools';
+      metaDesc = 'EverydayTool provides 60+ free, fast, and private online tools for images, PDFs, text manipulation, developer utilities, and everyday calculations. 100% in-browser processing.';
+      effectiveCanonical = `${origin}/`;
     }
 
     // Set Document Title
@@ -94,7 +95,7 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
       '@context': 'https://schema.org',
       '@type': 'WebSite',
       name: siteName,
-      url: origin,
+      url: `${origin}/`,
       description: 'Free client-side online tools for images, PDFs, text, file utilities, and developers.',
       potentialAction: {
         '@type': 'SearchAction',
@@ -108,7 +109,7 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
       '@context': 'https://schema.org',
       '@type': 'Organization',
       name: siteName,
-      url: origin,
+      url: `${origin}/`,
       logo: `${origin}/apple-touch-icon.png`,
     });
 
@@ -122,7 +123,7 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
         url: `${origin}${tool.route}`,
         description: tool.seoDescription || tool.description,
         applicationCategory: tool.applicationCategory || 'UtilitiesApplication',
-        operatingSystem: tool.operatingSystem || 'Web Browser',
+        operatingSystem: tool.operatingSystem || 'Any (Web Browser)',
         browserRequirements: 'Requires modern web browser with HTML5 and JavaScript support',
         softwareVersion: '1.0',
         offers: {
@@ -144,6 +145,10 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
       structuredData.push(appSchema);
 
       // BreadcrumbList Schema for Tool
+      const catInfo = CATEGORIES.find((c) => c.id === tool.category);
+      const catName = catInfo ? catInfo.name : tool.category.charAt(0).toUpperCase() + tool.category.slice(1);
+      const catUrl = catInfo?.slug ? `${origin}${catInfo.slug}` : `${origin}/`;
+
       structuredData.push({
         '@context': 'https://schema.org',
         '@type': 'BreadcrumbList',
@@ -152,13 +157,13 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: origin,
+            item: `${origin}/`,
           },
           {
             '@type': 'ListItem',
             position: 2,
-            name: tool.category.charAt(0).toUpperCase() + tool.category.slice(1),
-            item: `${origin}/category/${tool.category}`,
+            name: `${catName} Tools`,
+            item: catUrl,
           },
           {
             '@type': 'ListItem',
@@ -184,7 +189,7 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
           })),
         });
       }
-    } else if (category) {
+    } else if (category && category.id !== 'all') {
       // BreadcrumbList for Category Page
       structuredData.push({
         '@context': 'https://schema.org',
@@ -194,12 +199,12 @@ export const SeoHead: React.FC<SeoHeadProps> = ({
             '@type': 'ListItem',
             position: 1,
             name: 'Home',
-            item: origin,
+            item: `${origin}/`,
           },
           {
             '@type': 'ListItem',
             position: 2,
-            name: category.name,
+            name: `${category.name} Tools`,
             item: `${origin}${category.slug || `/?category=${category.id}`}`,
           },
         ],

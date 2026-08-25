@@ -8,8 +8,8 @@ const toolsFileContent = fs.readFileSync(toolsFilePath, 'utf8');
 
 // Dynamically extract category slugs from tools.ts
 const categoryMatches = [...toolsFileContent.matchAll(/slug:\s*'([^']+)'/g)].map(m => m[1]);
-// Filter out /tools if homepage already covers all tools or keep unique non-home slugs
-const uniqueCategorySlugs = Array.from(new Set(categoryMatches)).filter(slug => slug !== '/tools' && slug.startsWith('/'));
+// Filter unique valid category slugs
+const uniqueCategorySlugs = Array.from(new Set(categoryMatches)).filter(slug => slug.startsWith('/'));
 
 // Dynamically extract tool routes from tools.ts
 const routeMatches = [...toolsFileContent.matchAll(/route:\s*'([^']+)'/g)].map(m => m[1]);

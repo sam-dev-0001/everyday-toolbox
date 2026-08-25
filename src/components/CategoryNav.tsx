@@ -13,7 +13,10 @@ export const CategoryNav: React.FC = () => {
   const handleSelect = (catId: ToolCategory) => {
     setShowFavoritesOnly(false);
     setActiveCategory(catId);
-    if (!isHome) {
+    const cat = CATEGORIES.find(c => c.id === catId);
+    if (cat && cat.id !== 'all' && cat.slug) {
+      navigate(cat.slug);
+    } else {
       navigate('/');
     }
   };

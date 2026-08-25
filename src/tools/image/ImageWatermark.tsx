@@ -8,7 +8,7 @@ export const ImageWatermark: React.FC = () => {
   const [file, setFile] = useState<File | null>(null);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
 
-  const [text, setText] = useState<string>('© Everyday Toolbox');
+  const [text, setText] = useState<string>('© Everyday Tool');
   const [fontSize, setFontSize] = useState<number>(36);
   const [opacity, setOpacity] = useState<number>(60);
   const [color, setColor] = useState<string>('#FFFFFF');

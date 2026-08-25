@@ -3,7 +3,7 @@ import { AdPlaceholder } from '../../components/AdPlaceholder';
 import { Hash, Copy, Check, Trash2 } from 'lucide-react';
 
 export const CharacterCounter: React.FC = () => {
-  const [text, setText] = useState<string>('Hello! Everyday Toolbox is fast, private, and 100% client-side.');
+  const [text, setText] = useState<string>('Hello! Everyday Tool is fast, private, and 100% client-side.');
   const [copied, setCopied] = useState<boolean>(false);
 
   const stats = useMemo(() => {

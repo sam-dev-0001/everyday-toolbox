@@ -52,7 +52,7 @@ export const PdfToPpt: React.FC = () => {
       // 2. Initialize PptxGenJS presentation
       const pres = new pptxgen();
       pres.title = file.name.replace(/\.[^/.]+$/, '');
-      pres.author = 'Everyday Toolbox';
+      pres.author = 'Everyday Tool';
 
       // 3. Add each page image to a slide matching aspect ratio
       for (const page of renderedPages) {
